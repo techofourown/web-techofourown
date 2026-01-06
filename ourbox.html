@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurBox | Tech of Our Own</title>
+    <meta name="description" content="OurBox is a personal home appliance for security, privacy, and on-device AI. Run containerized apps locally and launch them from a phone-style web home screen—tap, swipe, and go. No required subscription. Your data stays in your home.">
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #0f172a;
+            --muted: #475569;
+            --accent: #2563eb;
+            --accent-dark: #1e40af;
+            --surface: #ffffff;
+            --surface-alt: #f8fafc;
+            --border: #e2e8f0;
+            --shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--ink);
+            background: var(--surface-alt);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 32px 24px 96px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            position: sticky;
+            top: 20px;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .nav-links a {
+            padding: 6px 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .button {
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button.secondary {
+            background: #ffffff;
+            color: var(--accent-dark);
+            border: 1px solid var(--border);
+            box-shadow: none;
+        }
+
+        header {
+            margin-top: 40px;
+            background: radial-gradient(circle at top left, #dbeafe, #ffffff 55%);
+            border-radius: 28px;
+            padding: 60px;
+            box-shadow: var(--shadow);
+            display: grid;
+            gap: 28px;
+        }
+
+        .eyebrow {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 4vw, 3.6rem);
+            line-height: 1.1;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 700px;
+        }
+
+        .hero-bullets {
+            display: grid;
+            gap: 12px;
+            max-width: 720px;
+        }
+
+        .hero-bullets strong {
+            color: var(--ink);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .hero-actions .text-link {
+            color: var(--accent-dark);
+            font-weight: 600;
+        }
+
+        .trust-strip {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        section {
+            margin-top: 72px;
+        }
+
+        h2 {
+            font-size: 2.1rem;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: var(--muted);
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid.two {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .grid.three {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+        }
+
+        .list {
+            margin-top: 12px;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        .list li {
+            margin-bottom: 10px;
+        }
+
+        .steps {
+            counter-reset: steps;
+        }
+
+        .step {
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #e0ecff;
+            color: var(--accent-dark);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cta-block {
+            margin-top: 24px;
+            background: #eff6ff;
+            border-radius: 20px;
+            padding: 32px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 18px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            margin-top: 72px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 16px 0 12px;
+        }
+
+        @media (max-width: 920px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                border-radius: 24px;
+            }
+
+            .nav-actions {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 720px) {
+            header {
+                padding: 40px 28px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <nav>
+            <a class="nav-brand" href="index.html">OurBox</a>
+            <div class="nav-links">
+                <a href="#product">Product</a>
+                <a href="#apps">Apps</a>
+                <a href="#how-it-works">How it works</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#for-families">For Families</a>
+                <a href="#for-builders">For Builders</a>
+                <a href="#faq">FAQ</a>
+                <a href="#updates">Get Updates</a>
+            </div>
+            <div class="nav-actions">
+                <a class="button" href="#waitlist">Join the Waitlist</a>
+                <a class="button secondary" href="#launcher">See the App Launcher</a>
+            </div>
+        </nav>
+
+        <header id="product">
+            <span class="eyebrow">OurBox</span>
+            <h1>A private home server that feels like an app.</h1>
+            <p>
+                OurBox is a small, always-on home appliance that runs your apps in containers and serves a beautiful,
+                phone-style web launcher. Your data stays in your home. Your AI stays local.
+            </p>
+            <div class="hero-bullets">
+                <p><strong>Swipeable app launcher</strong> that feels like iOS/Android (served as pure HTML)</p>
+                <p><strong>Runs containerized apps</strong> on a built-in lightweight cluster</p>
+                <p><strong>Local-first privacy</strong>: your family data doesn’t have to leave your house</p>
+                <p><strong>On-device AI</strong> for everyday tasks (summaries, voice, search, and more)</p>
+            </div>
+            <div class="hero-actions" id="waitlist">
+                <a class="button" href="#updates">Join the Waitlist</a>
+                <a class="button secondary" href="#launcher">Watch the Launcher Demo</a>
+                <a class="text-link" href="#apps">See what apps can run →</a>
+            </div>
+            <p class="trust-strip">No subscription required. Optional donations support shared infrastructure and long-term maintenance.</p>
+        </header>
+
+        <section>
+            <h2>Big Tech turned the home into a data mine. OurBox turns it back into yours.</h2>
+            <p>
+                Phones, TVs, routers, cloud accounts—everything wants to be the “center” of your digital life. The
+                result is a mess: privacy settings scattered everywhere, services you don’t control, and “smart”
+                features that quietly ship your information somewhere else.
+            </p>
+            <p>
+                <strong>OurBox is a single, physical place where your digital life can live—on your terms.</strong>
+                It’s a personal home server appliance designed for families, privacy-minded rebels, hobbyists, and
+                anyone who wants modern convenience <em>without</em> handing the keys to someone else.
+            </p>
+        </section>
+
+        <section id="apps">
+            <div class="grid two">
+                <div>
+                    <h2>Meet OurBox</h2>
+                    <p>
+                        OurBox is a compact appliance that runs your apps as containers on an internal orchestration
+                        layer, and then presents them through a <strong>mobile-first web UI</strong> that works like a
+                        home screen: <strong>tap, swipe, press-and-hold</strong>—launch apps instantly.
+                    </p>
+                </div>
+                <div class="card">
+                    <p>
+                        It’s built to be the heart of a home setup that’s:
+                    </p>
+                    <ul class="list">
+                        <li>easy enough for non-technical households to use daily</li>
+                        <li>powerful enough for builders to extend forever</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="launcher">
+            <h2>A home screen for your home server</h2>
+            <p>
+                Most self-hosting dashboards feel like… dashboards. OurBox doesn’t.
+            </p>
+            <p>
+                The OurBox launcher is a <strong>touch-first web UI</strong> designed to behave like a phone’s home
+                screen:
+            </p>
+            <ul class="list">
+                <li><strong>Swipe</strong> through apps</li>
+                <li><strong>Tap</strong> to launch</li>
+                <li><strong>Press-and-hold</strong> for app actions (open, manage, pin, remove)</li>
+                <li><strong>Add to Home Screen</strong> so it opens fullscreen like a real app</li>
+            </ul>
+            <p>Everything is served as <strong>standard HTML</strong> to your phone—no special client required.</p>
+        </section>
+
+        <section id="privacy">
+            <h2>Privacy, security, and AI—without the cloud dependency.</h2>
+            <div class="grid three">
+                <div class="card">
+                    <h3>Local-first by default</h3>
+                    <p>Your data lives where you live. OurBox is designed so your household can run essential services locally instead of outsourcing your private life.</p>
+                </div>
+                <div class="card">
+                    <h3>On-device AI</h3>
+                    <p>Run useful AI features directly on the box—like summarizing documents, local search, voice features, and more—without sending sensitive content to third-party servers.</p>
+                </div>
+                <div class="card">
+                    <h3>Apps as containers</h3>
+                    <p>Apps run as isolated services. Install, update, and launch them cleanly—without turning your home setup into a fragile science project.</p>
+                </div>
+                <div class="card">
+                    <h3>Phone-first UI</h3>
+                    <p>A launcher that feels familiar. Less “admin panel.” More “tap the thing you want.”</p>
+                </div>
+                <div class="card">
+                    <h3>Optional remote access</h3>
+                    <p>Access your box via a unique address when you need it—while still keeping your home setup simple.</p>
+                </div>
+                <div class="card">
+                    <h3>One-time purchase</h3>
+                    <p>No mandatory subscription. Optional donations help support the shared discovery/bootstrap infrastructure and ongoing maintenance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <h2>From power-on to app launch in minutes</h2>
+            <div class="grid two steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Power it up</h3>
+                    <p>OurBox is always-on when powered. No display required. No keyboard required.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Connect with your phone</h3>
+                    <p>Out of the box, OurBox supports a setup path that works even when you don’t want to mess with cables: it can provide a <strong>temporary Wi-Fi access point mode</strong> for onboarding.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Claim your box</h3>
+                    <p>Each unit includes a <strong>unique ID and QR code</strong> so your household can get to the right place fast.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Install apps</h3>
+                    <p>Choose from an app catalog (or bring your own). Apps run as containerized services.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Use it like a home screen</h3>
+                    <p>Open the launcher, swipe, and tap—just like the device you already understand.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>AI that helps—without becoming the product</h2>
+            <p>
+                OurBox is built for people who want the upside of modern AI without the constant trade: “Sure, we’ll
+                help… now hand over your data.”
+            </p>
+            <p>
+                With OurBox, AI features can run <strong>on the appliance</strong> so your household can:
+            </p>
+            <ul class="list">
+                <li>summarize and organize documents</li>
+                <li>search local content more intelligently</li>
+                <li>use voice features without always shipping audio to the cloud</li>
+                <li>explore creative and productive workflows locally</li>
+            </ul>
+            <p><strong>It’s your box. Your data. Your choice.</strong></p>
+        </section>
+
+        <section>
+            <div class="grid two">
+                <div>
+                    <h2>Purpose-built hardware. No fluff.</h2>
+                    <p>
+                        OurBox is designed around an efficient NVIDIA Jetson-class compute module for strong on-device
+                        performance. The product philosophy is ruthless simplicity:
+                    </p>
+                    <ul class="list">
+                        <li><strong>Wi-Fi built in</strong> (no Ethernet required)</li>
+                        <li><strong>NVMe storage support</strong> for fast, reliable local data</li>
+                        <li><strong>Fanless design</strong> for quiet, always-on operation</li>
+                        <li><strong>No camera, no display</strong>—this is an appliance, not a gadget</li>
+                    </ul>
+                    <p><em>(Exact configurations may vary by production run.)</em></p>
+                </div>
+                <div class="card">
+                    <h3>Your home server, made friendly</h3>
+                    <p>“Local-first by default” isn’t a tagline here—it’s the hardware and software promise. The box stays in your home, stays quiet, and stays useful for the long haul.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="for-families">
+            <h2>Built for families who want a calmer internet</h2>
+            <p>
+                Families don’t need a dozen apps and accounts to get basic digital safety. They need a home base.
+            </p>
+            <p>
+                OurBox is designed to make it easier to run household services in one place—so you can build a home
+                environment that’s:
+            </p>
+            <ul class="list">
+                <li>less ad-driven</li>
+                <li>less invasive</li>
+                <li>easier to manage</li>
+                <li>easier to explain to kids</li>
+            </ul>
+            <p>This is not about paranoia. It’s about <strong>agency</strong>.</p>
+        </section>
+
+        <section id="for-builders">
+            <h2>For builders: bring your own services</h2>
+            <p>
+                Under the hood, OurBox runs containerized services on a lightweight cluster so you can treat the box
+                like a real platform.
+            </p>
+            <ul class="list">
+                <li>deploy apps as containers</li>
+                <li>expose services locally (and optionally remotely)</li>
+                <li>run multiple apps cleanly on one appliance</li>
+                <li>keep a consistent launcher and installation experience</li>
+            </ul>
+            <p>If you can ship a container, you can ship an OurBox app.</p>
+        </section>
+
+        <section>
+            <h2>Simple model: buy the box, run your life</h2>
+            <p>
+                OurBox is designed to be a <strong>one-time purchase</strong> appliance.
+            </p>
+            <p>
+                There’s <strong>no required subscription</strong>. We may offer optional paid add-ons in the future,
+                but the core promise stands: the box should remain useful on its own.
+            </p>
+            <p>
+                To keep shared infrastructure running (like discovery/bootstrap services), we’ll also offer an
+                <strong>optional donation path</strong> for people who want to support long-term stewardship.
+            </p>
+            <div class="cta-block" id="updates">
+                <h3>Ready to get updates?</h3>
+                <p>Early supporters will get priority access and launch pricing.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#waitlist">Join the Waitlist</a>
+                    <a class="button secondary" href="#updates">Get Launch Updates</a>
+                </div>
+                <p class="trust-strip">No subscription required.</p>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+                <h3>Does OurBox require Ethernet?</h3>
+                <p>No—OurBox is designed to work with Wi-Fi. Setup is built to be phone-friendly.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is it an app or a website?</h3>
+                <p>The launcher is a <strong>mobile-first web UI</strong> served from the box. You can add it to your phone’s home screen and run it fullscreen like an app.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What kinds of apps can it run?</h3>
+                <p>Containerized services—everything from private home utilities to personal productivity tools. Some apps will be available in an install catalog, and builders can bring their own.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I access it when I’m away from home?</h3>
+                <p>Yes—OurBox is designed to support optional remote access through a unique address. Local access remains the default.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need a subscription?</h3>
+                <p>No mandatory subscription. The box is meant to stand on its own. Optional donations help support shared services and long-term maintenance.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is it for non-technical people or technical people?</h3>
+                <p>Both. The day-to-day experience is designed to be simple. The platform underneath is designed to be extendable.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is OurBox “privacy magic”?</h3>
+                <p>No product can rewrite reality—but OurBox is built to reduce unnecessary data exposure and make local-first living practical.</p>
+            </div>
+        </section>
+
+        <footer>
+            <strong>OurBox</strong>
+            <p>Personal security, privacy, and local AI—built for real households.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Principles</a>
+                <a href="#updates">Support</a>
+                <a href="#updates">Press / Media Kit</a>
+                <a href="index.html">Contact</a>
+            </div>
+            <p><strong>OurBox is designed to put you back in control of your home’s digital life.</strong></p>
+        </footer>
+    </main>
+</body>
+</html>
