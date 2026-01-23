@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OurBox | Tech of Our Own</title>
-    <meta name="description" content="OurBox is a personal home appliance for security, privacy, and on-device AI. Run containerized apps locally and launch them from a phone-style web home screen—tap, swipe, and go. No required subscription. Your data stays in your home.">
+    <meta name="description" content="OurBox is a local-first personal server appliance you can own outright. No subscriptions. Your data stays in your home.">
     <style>
         :root {
             color-scheme: light;
@@ -317,42 +317,41 @@
             <a class="nav-brand" href="index.html">OurBox</a>
             <div class="nav-links">
                 <a href="#product">Product</a>
-                <a href="#apps">Apps</a>
-                <a href="#how-it-works">How it works</a>
-                <a href="#privacy">Privacy</a>
-                <a href="#for-families">For Families</a>
-                <a href="#for-builders">For Builders</a>
+                <a href="#why">Why</a>
+                <a href="#principles">Principles</a>
+                <a href="#hardware">Hardware</a>
                 <a href="#faq">FAQ</a>
-                <a href="#updates">Get Updates</a>
             </div>
             <div class="nav-actions">
-                <a class="button" href="#waitlist">Join the Waitlist</a>
-                <a class="button secondary" href="#launcher">See the App Launcher</a>
+                <a class="button secondary" href="index.html#governance">Governance</a>
+                <a class="button" href="https://github.com/techofourown/pf-ourbox">Docs on GitHub</a>
             </div>
         </nav>
 
         <header id="product">
             <span class="eyebrow">OurBox</span>
-            <h1>A private home server that feels like an app.</h1>
+            <h1>A local-first home server you can own.</h1>
             <p>
-                OurBox is a small, always-on home appliance that runs your apps in containers and serves a beautiful,
-                phone-style web launcher. Your data stays in your home. Your AI stays local.
+                OurBox is a personal server appliance for running self-hosted services at home—without
+                subscriptions, lock-in, or data extraction.
             </p>
+
             <div class="hero-bullets">
-                <p><strong>Swipeable app launcher</strong> that feels like iOS/Android (served as pure HTML)</p>
-                <p><strong>Runs containerized apps</strong> on a built-in lightweight cluster</p>
-                <p><strong>Local-first privacy</strong>: your family data doesn’t have to leave your house</p>
-                <p><strong>On-device AI</strong> for everyday tasks (summaries, voice, search, and more)</p>
+                <p><strong>Local-first by design</strong> — core functionality lives on your hardware.</p>
+                <p><strong>Runs containerized services</strong> — you choose what to run and how.</p>
+                <p><strong>No subscriptions. Ever.</strong> The product must remain useful on its own.</p>
+                <p><strong>Open source by default</strong> — auditable, forkable, and built for real exit.</p>
             </div>
-            <div class="hero-actions" id="waitlist">
-                <a class="button" href="#updates">Join the Waitlist</a>
-                <a class="button secondary" href="#launcher">Watch the Launcher Demo</a>
-                <a class="text-link" href="#apps">See what apps can run →</a>
+
+            <div class="hero-actions">
+                <a class="button" href="https://github.com/techofourown/pf-ourbox">Read the OurBox docs</a>
+                <a class="button secondary" href="index.html#mission">Why we’re building this</a>
             </div>
-            <p class="trust-strip">No subscription required. Optional donations support shared infrastructure and long-term maintenance.</p>
+
+            <p class="trust-strip">No waitlist. No hype funnel. The repos are the source of truth.</p>
         </header>
 
-        <section>
+        <section id="why">
             <h2>Big Tech turned the home into a data mine. OurBox turns it back into yours.</h2>
             <p>
                 Phones, TVs, routers, cloud accounts—everything wants to be the “center” of your digital life. The
@@ -366,245 +365,95 @@
             </p>
         </section>
 
-        <section id="apps">
-            <div class="grid two">
-                <div>
-                    <h2>Meet OurBox</h2>
-                    <p>
-                        OurBox is a compact appliance that runs your apps as containers on an internal orchestration
-                        layer, and then presents them through a <strong>mobile-first web UI</strong> that works like a
-                        home screen: <strong>tap, swipe, press-and-hold</strong>—launch apps instantly.
-                    </p>
-                </div>
-                <div class="card">
-                    <p>
-                        It’s built to be the heart of a home setup that’s:
-                    </p>
-                    <ul class="list">
-                        <li>easy enough for non-technical households to use daily</li>
-                        <li>powerful enough for builders to extend forever</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="launcher">
-            <h2>A home screen for your home server</h2>
-            <p>
-                Most self-hosting dashboards feel like… dashboards. OurBox doesn’t.
-            </p>
-            <p>
-                The OurBox launcher is a <strong>touch-first web UI</strong> designed to behave like a phone’s home
-                screen:
-            </p>
-            <ul class="list">
-                <li><strong>Swipe</strong> through apps</li>
-                <li><strong>Tap</strong> to launch</li>
-                <li><strong>Press-and-hold</strong> for app actions (open, manage, pin, remove)</li>
-                <li><strong>Add to Home Screen</strong> so it opens fullscreen like a real app</li>
-            </ul>
-            <p>Everything is served as <strong>standard HTML</strong> to your phone—no special client required.</p>
-        </section>
-
-        <section id="privacy">
-            <h2>Privacy, security, and AI—without the cloud dependency.</h2>
+        <section id="principles">
+            <h2>Non-negotiables</h2>
             <div class="grid three">
                 <div class="card">
-                    <h3>Local-first by default</h3>
-                    <p>Your data lives where you live. OurBox is designed so your household can run essential services locally instead of outsourcing your private life.</p>
+                    <h3>No subscriptions. Ever.</h3>
+                    <p>We do not charge recurring consumer fees for core functionality.</p>
                 </div>
                 <div class="card">
-                    <h3>On-device AI</h3>
-                    <p>Run useful AI features directly on the box—like summarizing documents, local search, voice features, and more—without sending sensitive content to third-party servers.</p>
+                    <h3>Local-first forever</h3>
+                    <p>Core product behavior must work locally without dependence on our servers.</p>
                 </div>
                 <div class="card">
-                    <h3>Apps as containers</h3>
-                    <p>Apps run as isolated services. Install, update, and launch them cleanly—without turning your home setup into a fragile science project.</p>
+                    <h3>User data is not a product</h3>
+                    <p>No sale of user data. No behavioral advertising. No hidden telemetry.</p>
                 </div>
                 <div class="card">
-                    <h3>Phone-first UI</h3>
-                    <p>A launcher that feels familiar. Less “admin panel.” More “tap the thing you want.”</p>
+                    <h3>Open source by default</h3>
+                    <p>Core software is published under an open-source license with auditable processes.</p>
                 </div>
                 <div class="card">
-                    <h3>Optional remote access</h3>
-                    <p>Access your box via a unique address when you need it—while still keeping your home setup simple.</p>
+                    <h3>Exit must be real</h3>
+                    <p>Exportability and interoperability are first-class requirements.</p>
                 </div>
                 <div class="card">
-                    <h3>One-time purchase</h3>
-                    <p>No mandatory subscription. Optional donations help support the shared discovery/bootstrap infrastructure and ongoing maintenance.</p>
+                    <h3>Right to repair</h3>
+                    <p>We design for durability, serviceability, and long-life support.</p>
                 </div>
             </div>
         </section>
 
-        <section id="how-it-works">
-            <h2>From power-on to app launch in minutes</h2>
-            <div class="grid two steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Power it up</h3>
-                    <p>OurBox is always-on when powered. No display required. No keyboard required.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Connect with your phone</h3>
-                    <p>Out of the box, OurBox supports a setup path that works even when you don’t want to mess with cables: it can provide a <strong>temporary Wi-Fi access point mode</strong> for onboarding.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Claim your box</h3>
-                    <p>Each unit includes a <strong>unique ID and QR code</strong> so your household can get to the right place fast.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Install apps</h3>
-                    <p>Choose from an app catalog (or bring your own). Apps run as containerized services.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h3>Use it like a home screen</h3>
-                    <p>Open the launcher, swipe, and tap—just like the device you already understand.</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>AI that helps—without becoming the product</h2>
-            <p>
-                OurBox is built for people who want the upside of modern AI without the constant trade: “Sure, we’ll
-                help… now hand over your data.”
-            </p>
-            <p>
-                With OurBox, AI features can run <strong>on the appliance</strong> so your household can:
-            </p>
-            <ul class="list">
-                <li>summarize and organize documents</li>
-                <li>search local content more intelligently</li>
-                <li>use voice features without always shipping audio to the cloud</li>
-                <li>explore creative and productive workflows locally</li>
-            </ul>
-            <p><strong>It’s your box. Your data. Your choice.</strong></p>
-        </section>
-
-        <section>
+        <section id="hardware">
             <div class="grid two">
                 <div>
-                    <h2>Purpose-built hardware. No fluff.</h2>
+                    <h2>Purpose-built hardware</h2>
                     <p>
-                        OurBox is designed around an efficient NVIDIA Jetson-class compute module for strong on-device
-                        performance. The product philosophy is ruthless simplicity:
+                        OurBox is a physical appliance designed to live on a shelf and run continuously.
+                        Specific hardware configurations may evolve over time, but the product promise stays constant:
+                        a durable, repairable home base for self-hosted services.
                     </p>
-                    <ul class="list">
-                        <li><strong>Wi-Fi built in</strong> (no Ethernet required)</li>
-                        <li><strong>NVMe storage support</strong> for fast, reliable local data</li>
-                        <li><strong>Fanless design</strong> for quiet, always-on operation</li>
-                        <li><strong>No camera, no display</strong>—this is an appliance, not a gadget</li>
-                    </ul>
-                    <p><em>(Exact configurations may vary by production run.)</em></p>
                 </div>
                 <div class="card">
-                    <h3>Your home server, made friendly</h3>
-                    <p>“Local-first by default” isn’t a tagline here—it’s the hardware and software promise. The box stays in your home, stays quiet, and stays useful for the long haul.</p>
+                    <h3>Canonical specs live in the repos</h3>
+                    <p>
+                        We keep the real hardware and system documentation in the OurBox product family repository.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button" href="https://github.com/techofourown/pf-ourbox">OurBox docs on GitHub</a>
+                        <a class="button secondary" href="https://github.com/techofourown/org-techofourown">Org docs on GitHub</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="for-families">
-            <h2>Built for families who want a calmer internet</h2>
-            <p>
-                Families don’t need a dozen apps and accounts to get basic digital safety. They need a home base.
-            </p>
-            <p>
-                OurBox is designed to make it easier to run household services in one place—so you can build a home
-                environment that’s:
-            </p>
-            <ul class="list">
-                <li>less ad-driven</li>
-                <li>less invasive</li>
-                <li>easier to manage</li>
-                <li>easier to explain to kids</li>
-            </ul>
-            <p>This is not about paranoia. It’s about <strong>agency</strong>.</p>
-        </section>
-
-        <section id="for-builders">
-            <h2>For builders: bring your own services</h2>
-            <p>
-                Under the hood, OurBox runs containerized services on a lightweight cluster so you can treat the box
-                like a real platform.
-            </p>
-            <ul class="list">
-                <li>deploy apps as containers</li>
-                <li>expose services locally (and optionally remotely)</li>
-                <li>run multiple apps cleanly on one appliance</li>
-                <li>keep a consistent launcher and installation experience</li>
-            </ul>
-            <p>If you can ship a container, you can ship an OurBox app.</p>
-        </section>
-
-        <section>
-            <h2>Simple model: buy the box, run your life</h2>
-            <p>
-                OurBox is designed to be a <strong>one-time purchase</strong> appliance.
-            </p>
-            <p>
-                There’s <strong>no required subscription</strong>. We may offer optional paid add-ons in the future,
-                but the core promise stands: the box should remain useful on its own.
-            </p>
-            <p>
-                To keep shared infrastructure running (like discovery/bootstrap services), we’ll also offer an
-                <strong>optional donation path</strong> for people who want to support long-term stewardship.
-            </p>
-            <div class="cta-block" id="updates">
-                <h3>Ready to get updates?</h3>
-                <p>Early supporters will get priority access and launch pricing.</p>
-                <div class="hero-actions">
-                    <a class="button" href="#waitlist">Join the Waitlist</a>
-                    <a class="button secondary" href="#updates">Get Launch Updates</a>
-                </div>
-                <p class="trust-strip">No subscription required.</p>
-            </div>
-        </section>
 
         <section id="faq">
             <h2>FAQ</h2>
+
             <div class="faq-item">
-                <h3>Does OurBox require Ethernet?</h3>
-                <p>No—OurBox is designed to work with Wi-Fi. Setup is built to be phone-friendly.</p>
+                <h3>What is OurBox?</h3>
+                <p>A local-first personal server appliance you can own outright for running self-hosted services at home.</p>
             </div>
-            <div class="faq-item">
-                <h3>Is it an app or a website?</h3>
-                <p>The launcher is a <strong>mobile-first web UI</strong> served from the box. You can add it to your phone’s home screen and run it fullscreen like an app.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What kinds of apps can it run?</h3>
-                <p>Containerized services—everything from private home utilities to personal productivity tools. Some apps will be available in an install catalog, and builders can bring their own.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can I access it when I’m away from home?</h3>
-                <p>Yes—OurBox is designed to support optional remote access through a unique address. Local access remains the default.</p>
-            </div>
+
             <div class="faq-item">
                 <h3>Do I need a subscription?</h3>
-                <p>No mandatory subscription. The box is meant to stand on its own. Optional donations help support shared services and long-term maintenance.</p>
+                <p>No. We do not offer consumer subscriptions for core functionality.</p>
             </div>
+
             <div class="faq-item">
-                <h3>Is it for non-technical people or technical people?</h3>
-                <p>Both. The day-to-day experience is designed to be simple. The platform underneath is designed to be extendable.</p>
+                <h3>Is it open source?</h3>
+                <p>Yes—core software is open source by default. The repos are the source of truth.</p>
             </div>
+
             <div class="faq-item">
-                <h3>Is OurBox “privacy magic”?</h3>
-                <p>No product can rewrite reality—but OurBox is built to reduce unnecessary data exposure and make local-first living practical.</p>
+                <h3>Where do I learn more?</h3>
+                <p>
+                    Start with the OurBox docs and the organization governance docs:
+                    <a href="https://github.com/techofourown/pf-ourbox">pf-ourbox</a> and
+                    <a href="https://github.com/techofourown/org-techofourown">org-techofourown</a>.
+                </p>
             </div>
         </section>
 
         <footer>
             <strong>OurBox</strong>
-            <p>Personal security, privacy, and local AI—built for real households.</p>
+            <p>Personal security and privacy—built for real households.</p>
             <div class="footer-links">
-                <a href="#privacy">Privacy Principles</a>
-                <a href="#updates">Support</a>
-                <a href="#updates">Press / Media Kit</a>
-                <a href="index.html">Contact</a>
+                <a href="index.html">Tech of Our Own</a>
+                <a href="https://github.com/techofourown/pf-ourbox">OurBox on GitHub</a>
+                <a href="https://github.com/techofourown/org-techofourown">Governance on GitHub</a>
             </div>
             <p><strong>OurBox is designed to put you back in control of your home’s digital life.</strong></p>
         </footer>
